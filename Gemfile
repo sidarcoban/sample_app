@@ -6,7 +6,8 @@ gem 'rails', '4.1.6'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails'
+  #gem 'rspec-rails'
+  gem 'guard-rspec'
 end
 # Use sqlite3 as the database for Active Record
 
@@ -19,9 +20,16 @@ group :assets do
 
 
 end
-
+#gem 'win32console'
 group :test do
+  gem 'rspec-rails'
   gem 'capybara'
+  gem 'rb-fchange'
+  gem 'rb-notifu'
+  gem 'guard-spork'
+  gem 'spork'
+
+
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -58,3 +66,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+require 'rbconfig'
+if RbConfig::CONFIG['target_os'] =~ /mswin|mingw|cygwin/i
+  gem 'wdm', '>= 0.1.0'
+  end
