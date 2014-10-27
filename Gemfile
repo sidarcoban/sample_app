@@ -3,11 +3,19 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
+gem 'bootstrap-sass', '3.1.1.1'
+gem 'sprockets-rails'
+gem 'protected_attributes'
+gem 'bcrypt'
+gem 'minitest'
+gem 'minitest-reporters', '>= 0.5.0'
 
 group :development, :test do
   gem 'sqlite3'
-  #gem 'rspec-rails'
+  gem 'rspec-rails'
   gem 'guard-rspec'
+  gem 'annotate'
+  gem 'database_cleaner'
 end
 # Use sqlite3 as the database for Active Record
 
@@ -22,12 +30,14 @@ group :assets do
 end
 #gem 'win32console'
 group :test do
-  gem 'rspec-rails'
+  #gem 'rspec-rails'
   gem 'capybara'
   gem 'rb-fchange'
   gem 'rb-notifu'
   gem 'guard-spork'
   gem 'spork'
+  gem 'factory_girl_rails'
+
 
 
 end

@@ -1,61 +1,25 @@
 require 'spec_helper'
-
-feature "StaticPages" do
-  feature "GET /static_pages" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      visit '/static_pages/home'
-      page.status_code.should be 200
-    end
+describe "Static_pages" do
+  subject { page }
+  describe "Home_page" do
+    before { visit "/" }
+    it { should have_selector('h1', text: 'Sample App') }
+    it { should have_selector('title', text: full_title(''), visible: false ) }
+    it { should_not have_selector( 'title', text: '| Home') }
   end
-end
-
-
-feature "About page" do
-  it "should have the content 'About Us'" do
-    visit '/static_pages/about'
-    page.status_code.should be 200
+  describe "Help_page" do
+    before { visit help_path }
+    it { should have_selector('h1', text: 'Help') }
+    it { should have_selector('title', text: full_title('Help')) }
   end
-end
-
-feature "Home page" do
-
-  it "should have the h1 'Sample App'" do
-    visit '/static_pages/home'
-    page.should have_selector('h1', :text => 'Sample App')
+  describe "About_page" do
+    before { visit about_path }
+    it { should have_selector('h1', text: 'About') }
+    it { should have_selector('title', text: full_title('About Us')) }
   end
-  it "should have the base title" do
-    visit '/static_pages/home'
-    page.should have_selector('title',
-                              :text => "Ruby on Rails Tutorial Sample App", :visible => false)
-  end
-
-  it "should not have a custom page title" do
-    visit '/static_pages/home'
-    page.should_not have_selector('title', :text => '| Home')
-  end
-
-
-
-
-end
-feature "Help page" do
-  it "should have the h1 'Help'" do
-    visit '/static_pages/help'
-    page.should have_title('Help')
-  end
-  it "should have the title 'Help'" do
-    visit '/static_pages/help'
-    page.should have_title("Ruby on Rails Tutorial Sample App | Help")
-  end
-end
-feature "About page" do
-  it "should have the h1 'About Us'" do
-    visit '/static_pages/about'
-    page.should have_title('About Us')
-  end
-  it "should have the title 'About Us'" do
-    visit '/static_pages/about'
-    page.should have_title("Ruby on Rails Tutorial Sample App | About Us")
+  describe "Contact_page" do
+    before { visit "contact" }
+    it { should have_selector('h1', text: 'Contact') }
+    it { should have_selector('title', text: full_title('Contact'), visible: false ) }
   end
 end
